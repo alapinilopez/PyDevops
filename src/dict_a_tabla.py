@@ -7,22 +7,18 @@ def dict_a_tabla(BBDD_simulada):
         assert len(BBDD_simulada) > 0
     except:
         return "Su base de datos está vacía"
+
     # cada clave hacerla bold y su valor ponerlo al lado en texto plano
-
-    keys = ""
-    values = ""
-    for key in BBDD_simulada.keys():
-        keys += "### " + key + "\n"
-    return keys
-
-
-#  textfile = open("prueba.md", "a")
-#  textfile.write(keys)
-#  usar esto para escribir en md
-
-#  for value in list(BBDD_simulada.values()):
-#      values += "**" + str(value) + "**" + "\n"
-# print(values)
+    bold = "**"
+    key_value = ""
+    for ship_id, ship_info in BBDD_simulada.items():  # iterar el diccionario anidado
+        for key in ship_info:
+            key_value += bold + key + bold + ': ' + str(ship_info[key]) + "\n"
+        key_value += "\n"
+        # Añadimos los items al archivo md con la funcion open()
+        f = open("prueba.md", "w")
+        f.write(key_value)
+        f.close()
 
 
 dict_a_tabla(BBDD_simulada)
