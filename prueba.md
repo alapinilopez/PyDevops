@@ -1,7 +1,7 @@
 **model**: Clio Sport
 **brand**: renault
 **category**: premium
-**type**: diesel
+**type**: Vin diesel
 **color**: yellow
 **asientos**: 5
 **year**: 2001

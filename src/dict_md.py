@@ -2,7 +2,7 @@ from typing import Dict
 from BBDD_simulada import BBDD_simulada
 
 
-def dict_a_tabla(BBDD_simulada):
+def dict_md(BBDD_simulada):
     try:
         assert len(BBDD_simulada) > 0
     except:
@@ -21,4 +21,4 @@ def dict_a_tabla(BBDD_simulada):
         f.close()
 
 
-dict_a_tabla(BBDD_simulada)
+dict_md(BBDD_simulada)
