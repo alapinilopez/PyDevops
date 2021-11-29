@@ -1,4 +1,4 @@
-from src.dict_md import dict_md
+from src.logic.dict_md import dict_md
 import pytest
 
 
