@@ -1,5 +1,6 @@
-from typing import Dict
-from BBDD_simulada import BBDD_simulada
+import sys
+sys.path.append(".") #Para poder debuguear sin tener que quitar el src.logic.
+from src.logic.BBDD_simulada import BBDD_simulada
 
 
 def dict_md(BBDD_simulada):
