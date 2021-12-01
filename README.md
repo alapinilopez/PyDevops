@@ -33,5 +33,11 @@ Hemos dividido la tarea 3 en tres subtareas:
 + Luego, hemos creado una base de datos simulada, no real, porque hemos preferido darle prioridad a tener un programa que funcione con cualquier BBDD y luego ya crearemos la BBDD real.
 + Finalmente, hemos creado una función que coge la BBDD simulada y la convierte y la añade en un archivo markdown. También hemos creado un caso test para comprobar que la base de datos no este vacia.
 
+### INICIALIZAR WEB CON HUGO
+Para inicializar nuestra página web tendremos que utilizar comandos en la consola de **Git Bash** para así evitar tener errores que nos pueden surgir con la consola de Windows. 
+Nota: debemos descargar HUGO Extended para poder utilizar todo tipo de CSS en nuestra web. https://github.com/gohugoio/hugo/releases
+Lo que debemos hacer es navegar al directorio en el que tengamos HUGO\Sites y hacer el siguiente comando:
+``$ hugo new site quickstart``
+
 
 Comprobar la versión de Hugo desde powershell puede dar error. Mejor ejecutar comandos desde el cmd
