@@ -27,7 +27,7 @@ def dict_md(cars):
                 continue
         key_value += "\n"
         # Añadimos los items al archivo md con la funcion open()
-        f = open("prueba.md", "w")
+        f = open("main.md", "w")
         f.write(key_value)
         f.close()
 

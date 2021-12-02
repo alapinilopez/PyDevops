@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "BBDD",
-        "Conversion md"
+        "Conversion md",
+        "HUGO"
     ]
 }
