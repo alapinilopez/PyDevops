@@ -1,0 +1,49 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Alquileres Paco'
+theme = "HugoTheme-VibrantShadows"
+[menu]
+[[menu.main]]
+  identifier = 'blog'
+  name = 'Página de inicio'
+  title = 'blog section'
+  url = '/Hugo/sites/carrenting/_index.md'
+  weight = -110
+[[menu.main]]
+  identifier = 'barato'
+  name = 'Coches Baratos'
+  title = 'blog section'
+  url = '/Hugo/sites/carrenting/_index.md'
+  weight = -10
+  [[menu.main]]
+  identifier = 'disponibles'
+  name = 'Coches Disponibles'
+  title = 'blog section'
+  url = '/Hugo/sites/carrenting/_index.md'
+  weight = -10
+  [[menu.main]]
+  identifier = 'todos'
+  name = 'Nuestros Coches'
+  title = 'blog section'
+  url = '/Hugo/sites/carrenting/_index.md'
+  weight = 10
+  [markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.parser]
+      autoHeadingID = true
+      autoHeadingIDType = 'github'
+      [markup.goldmark.parser.attribute]
+        block = false
+        title = true
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = false
+      xhtml = false
