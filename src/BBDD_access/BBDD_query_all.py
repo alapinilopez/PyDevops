@@ -7,6 +7,4 @@ def BBDD_query_all(collection):
     for document in collection.find({}):
         array.append(document)
     return array
-#    f = open("BBDD.py", "w")
-#    f.write(document)
-#    f.close()
+
