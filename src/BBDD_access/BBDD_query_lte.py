@@ -8,6 +8,3 @@ def BBDD_query_lte(collection):
     for document in collection.find({"price": {"$lte": 25}}):
         cars_cheaper.append(document)
     return cars_cheaper
-
-if __name__ == "__main__":
-    assert BBDD_query_lte(collection) != -1

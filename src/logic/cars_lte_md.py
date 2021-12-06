@@ -15,6 +15,7 @@ def cars_cheaper_md(cars_cheaper):
         print("Base de datos OK")
     except:
         print("Su base de datos está vacía")
+        return "Su base de datos está vacía"
 
     # cada clave hacerla bold y su valor ponerlo al lado en texto plano. Listarlo
     key_value = ""
@@ -25,8 +26,6 @@ def cars_cheaper_md(cars_cheaper):
             else:
                 continue
         key_value += "\n"
-        # Añadimos los items al archivo md con la funcion open()
-        f = open("hugo\Sites\carrenting\content\posts\precio.md", "w")
-        f.write(key_value)
-        f.close()
+        
+    return key_value
 cars_cheaper_md(cars_cheaper)

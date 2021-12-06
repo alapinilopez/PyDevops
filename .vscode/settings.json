@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "BBDD",
         "Conversion md",
-        "HUGO"
+        "HUGO",
+        "casos tests"
     ]
 }
