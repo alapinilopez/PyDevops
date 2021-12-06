@@ -14,21 +14,20 @@ def cars_all_md(cars):
         print("Base de datos OK")
     except:
         print("Su base de datos está vacía")
+        return "Su base de datos está vacía"
 
     # cada clave hacerla bold y su valor ponerlo al lado en texto plano. Listarlo
+    global key_value
     key_value = ""
     for document in cars:
-        # for car_id, car_info in document:  # iterar el diccionario anidado
         for key in document:
             if key != "_id" and key != "category":
                 key_value += "* " + "**" + key + "**" + ': ' + str(document[key]) + "\n"
             else:
                 continue
         key_value += "\n"
-        # Añadimos los items al archivo md con la funcion open()
-        f = open("hugo\Sites\carrenting\content\posts\main.md", "w")
-        f.write(key_value)
-        f.close()
+    assert isinstance(key_value, str)
+    return key_value
 
 
 cars_all_md(cars)
