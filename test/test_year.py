@@ -3,9 +3,6 @@ from tests import *
 import pytest
 
 
-@pytest.mark.year
-def test_bd_empty():
-    assert cars_classics_md([]) == "Su base de datos está vacía"
 
 @pytest.mark.year
 def test_correcto():
