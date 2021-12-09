@@ -1,7 +1,7 @@
 ---
 title: "Alquileres Paco"
 featured_image: "images/header.jpeg"
-description: "Su amigo y venico Paco le alquila al mejor precio"
+description: "Su amigo y vecino Paco le alquila al mejor precio"
 ---
 ![Calendario](https://emojipedia-us.s3.amazonaws.com/source/skype/289/calendar_1f4c5.png)
 ### Alquileres flexibles
