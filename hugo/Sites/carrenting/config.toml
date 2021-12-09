@@ -1,13 +1,13 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
 title = 'Alquileres Paco'
-theme = "HugoTheme-VibrantShadows"
+theme = "ananke"
 [menu]
 [[menu.main]]
   identifier = 'blog'
   name = 'Página de inicio'
   title = 'blog section'
-  url = 'hugo\Sites\carrenting\content\_index.md'
+  url = '\hugo\Sites\carrenting\content'
   weight = -110
 [[menu.main]]
   identifier = 'barato'
@@ -47,3 +47,13 @@ theme = "HugoTheme-VibrantShadows"
       hardWraps = false
       unsafe = false
       xhtml = false
+
+[params]
+  author = ""
+  favicon = ""
+  site_logo = ""
+  description = "Tu madre está gorda"
+  # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+  background_color_class = "orange"
+  featured_image = "images/header.jpeg"
+  
