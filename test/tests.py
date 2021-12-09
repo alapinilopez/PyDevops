@@ -40,7 +40,3 @@ doc_correct_classic = [{
    }
 
 ]
-
-
-#BBDD_connect comprobar que se conecta a la base de datos
-#BBDD_query_lte comprobar que no nos da ningun documento que el valor sea mayor que 25
