@@ -10,9 +10,10 @@ def connection(uri):
         client.server_info()
     except pymongo.errors.ServerSelectionTimeoutError:
         print("El servidor está caído")
+        exit()
 
     db = client.PyDevops
     collection = db.cars
-    
+
 connection(uri)
 
