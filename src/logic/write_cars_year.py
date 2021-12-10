@@ -9,5 +9,10 @@ md_cars_classics = cars_classics_md(cars_classics)
 
 def write_cars_year(md_cars_classics):
     f = open("hugo\Sites\carrenting\content\posts\year.md", "w")
+    f.write("Hola de nuevo, aqui estan los clasicos" + "<!--more-->" + md_cars_classics)
+    f.close()
+
+def write_cars_year2(md_cars_classics):
+    f = open("hugo\Sites\carrenting\content\year.md", "w")
     f.write(md_cars_classics)
     f.close()
