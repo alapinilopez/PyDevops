@@ -19,8 +19,8 @@ if value_category_name != ("common" or "classic" or "premium"):
     exit()
 
 value_category_discounttax = input("Valor Tasa de descuento: ")
-value_category_name = int(value_category_name)
-if value_category_name != (20 or 40 or 60):
+value_category_discounttax = int(value_category_discounttax)
+if value_category_discounttax != (20 or 40 or 60):
     print("introduzca uno de los siguientes números según su categoría")
     print("common: 60")
     print("classic: 40")
