@@ -1,4 +1,4 @@
-Hola de nuevo, aqui estan los clasicos<!--more-->
+
 ### Item 1
 * model: corolla
 * brand: toyota

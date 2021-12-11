@@ -4,28 +4,22 @@ title = 'Alquileres Paco'
 theme = "ananke"
 [menu]
 [[menu.main]]
-  identifier = 'blog'
-  name = 'Página de inicio'
-  title = 'blog section'
-  url = '\hugo\Sites\carrenting\content'
-  weight = -110
-[[menu.main]]
   identifier = 'barato'
   name = 'Coches Baratos'
   title = 'blog section'
-  url = 'hugo\Sites\carrenting\content\posts\barato.md'
+  url = '/precio/'
   weight = -10
   [[menu.main]]
   identifier = 'año'
-  name = 'Coches Disponibles'
+  name = 'Coches Clásicos'
   title = 'blog section'
-  url = 'hugo\Sites\carrenting\content\posts\year.md'
+  url = '/year/'
   weight = -10
   [[menu.main]]
   identifier = 'todos'
   name = 'Nuestros Coches'
   title = 'blog section'
-  url = 'hugo\Sites\carrenting\content\posts\main.md'
+  url = '/main/'
   weight = 10
   [markup]
   [markup.goldmark]

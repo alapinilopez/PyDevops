@@ -1,4 +1,4 @@
-Hola tu, aqui encontraras los coches mas baratos<!--more-->
+
 ### Item 1
 * model: leon
 * brand: seat

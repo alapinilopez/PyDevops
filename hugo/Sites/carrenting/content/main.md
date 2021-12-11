@@ -1,4 +1,4 @@
-Hola mundo, aqui encontraras todos los coches que tenemos en nuestra BBDD<!--more-->
+
 ### Item 1
 * **model**: alpine
 * **brand**: renault
