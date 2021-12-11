@@ -1,4 +1,7 @@
 import pymongo
+from pymongo.common import SERVER_SELECTION_TIMEOUT
+from pymongo import MongoClient, errors
+import time
 
 
 uri = 'mongodb+srv://admin:admin@cluster0.thpbm.mongodb.net/PyDevops?retryWrites=true&w=majority'
@@ -7,11 +10,11 @@ def connection(uri):
     try:
         #Utilizamos una funcion de pymongo para conectarnos a la base de datos
         client = pymongo.MongoClient(uri)
-        #client.server_info()
+        client.server_info()
         db = client.PyDevops
         collection = db.cars
     except:
-        print("El servidor está caído o no estas conectado a la red")
+        print("El servidor está caído o no estás conectado a la red")
         exit()
 
 
