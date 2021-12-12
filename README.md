@@ -142,8 +142,28 @@ Hemos elegido programar en VSCode por los siguientes motivos:
 
 ### **BackEnd**
 
-### **FronTend**
-![Web](/images/web_portada)
+### **FrontEnd**
+![Web](/images/web_portada.png)
+
+El FrontEnd de la web es generado automáticamente por Hugo. Para poder utilizar Hugo debemos hacer lo siguiente:
+
+1. Utilizar la consola **Bash** si somos usuarios de Windows. Powershell o cmd puede causar problemas.
+2. Instalar Hugo Extended en nuestra máquina https://github.com/gohugoio/hugo/releases. ¿Por qué la versión extended y no la estándard? Porque con la extended podremos utilizar cualquier tipo de plantilla.
+3. Uno vez hayamos instalado Hugo, la instalación varía según el sistema operativo en el que trabajemos, vamos a la carpeta Sites y empezamos a introducir los siguientes comandos:
+    - ``hugo new site carrenting`` genera toda la estructura de directorios necesaria para nuestra web.
+    - ``cd carrenting`` nos posicionamos en la nueva carpeta. Manualmente nos descargamos el template que más nos guste de https://themes.gohugo.io/ y lo extraemos en el directorio *"themes"*
+    - en el archivo config.toml escribimos el nombre del tema que nos hemos descargado ``theme = "ananke"``.
+    - Le añadimos contenido MarkDown a la web siguiendo la estrectura que nos mande el tema en su documentación oficial. Si el tema no tiene documentación no es un buen tema. En nuestro caso la distribución es la siguiente: carpeta principal que incluye:
+        - **_index.md**: página principal
+        - **main.md**: copia de main.md de posts. Sirve para que funcione el botón del nav.
+        - **precio.md**: copia de precio.md de posts. Sirve para que funcione el botón del nav.
+        - **year.md**: copia de year.md de posts. Sirve para que funcione el botón del nav.
+            - Carpeta posts:
+                - **main.md**: consulta de todos los items.
+                - **precio.md**: consulta de los items inferiores o igual a x precio.
+                - **year.md**: consulta de los items anteriores a x año.
+    - Ejecutamos el comando ``hugo server`` para inicializar la web.    
+    ![Hugo directorios](/images/hugo_directorios.png)
 
 ### Tarea 3
 Hemos dividido la tarea 3 en tres subtareas:
@@ -151,11 +171,3 @@ Hemos dividido la tarea 3 en tres subtareas:
 + Luego, hemos creado una base de datos simulada, no real, porque hemos preferido darle prioridad a tener un programa que funcione con cualquier BBDD y luego ya crearemos la BBDD real.
 + Finalmente, hemos creado una función que coge la BBDD simulada y la convierte y la añade en un archivo markdown. También hemos creado un caso test para comprobar que la base de datos no este vacia.
 
-### INICIALIZAR WEB CON HUGO
-Para inicializar nuestra página web tendremos que utilizar comandos en la consola de **Git Bash** para así evitar tener errores que nos pueden surgir con la consola de Windows. 
-Nota: debemos descargar HUGO Extended para poder utilizar todo tipo de CSS en nuestra web. https://github.com/gohugoio/hugo/releases
-Lo que debemos hacer es navegar al directorio en el que tengamos HUGO\Sites y hacer el siguiente comando:
-``$ hugo new site quickstart``
-
-
-Comprobar la versión de Hugo desde powershell puede dar error. Mejor ejecutar comandos desde el cmd
