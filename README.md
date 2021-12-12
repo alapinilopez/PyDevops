@@ -51,9 +51,14 @@ La **Lista de Producto** es una lista ordenada de todo lo que podría ser necesa
 **Sprint** 
 El sprint es el corazón del Scrum. El sprint es un bloque de tiempo el cual se crea un incremento de producto “Terminado”, utilizable y potencialmente desplegable. Es más conveniente si la duración de los Sprints es consistente a lo largo del esfuerzo de desarrollo, en nuestra caso un sprint duraba entre 3 días y una semana. Cada nuevo Sprint comienza inmediatamente después de la finalización del Sprint previo. En este proyecto los sprints se ideaban a partir de las **historias de usuario**.
 
-![scrum](/images/scrum.png)
-
 ## ANÁLISIS
+Hemos analizado el proyecto mediante historias de usuario. Tras un período de análisis llegamos a la conclusión que el desarrollo de esta aplicación la llevaríamos a cabo en 5 historias de usuario, **5 épicas**:
+1. Creación de la BBDD: El usuario quiere disponer de una BBDD, con una estructura especifica.
+2. Consultar la BBDD: El usuario quiere que los elementos de la BBDD sean accesibles.
+3. Programar en Python: El usuario quiere pasar la BBDD a un formato web.
+4. Utilizar HUGO para convertir un archivo markdown a html: El usuario quiere crear la web con un generador estático de contenidos.
+5. Darle estilo a la página web con CSS: El usuario quiere una página web de los elementos de la BBDD bonita.
+
 Para este proyecto las tecnologías a utilizar ya nos fueron "asignadas", por así decirlo. Como ya he comentado anteriormente para la base de datos utilizamos **MongoDB Atlas**. El lenguaje de programación es **Python**. Y el generador estático de contenido es **Hugo**.
 
 Otras tecnologías que podríamos haber usado si el proyecto fuera "libre" son:
@@ -74,7 +79,38 @@ MongoDB Atlas es una base de datos en la nube que maneja toda la complejidad de 
 
 - Hugo: Hugo es un moderno framework para creación de sitios web de propósito general. Se ubica en la categoría de los nuevos generadores de sitios estáticos,2​ basados en la arquitectura dinámica JAMstack y es escrito completamente en Go.
 
-### Esquema de la Base de Datos
+### **Estructura de directorios**
+La estructura de directorios utilizada es la siguiente:
+![Directorios](/images/directorios.png)
+
+- PyDevops: carpeta raíz del proyecto.
+- hugo: carpeta que contiene todos los componentes necesarios para ejecutar Hugo. La estructura de directorios interna a esta carpeta la genera Hugo **automáticamente**.
+- imagenes: contiene las imágenes de este ***README.md***
+- src: contiene toda la lógica programada en Python. Colocamos cada fichero Python en una carpeta diferente según su funcionalidad.
+    - BBDD_access: lógica Python que conecta a la base de datos. También contiene una carpeta dentro.
+        - CRUD: lógica Python que hace modificaciones a la base de datos por consola. También contiene una carpeta.
+            - API: lógica Python que hace modificaciones a la base de datos mediante formularios de Google.
+    - logic: contiene la lógica Python que convierte los items de la base de datos a formato MarkDown.
+- test: carpeta que contiene todos los casos test ideados para comprobar la efectividad de nuestro código.
+
+### **Arquitectura de la aplicación**
+
+![Arquitectura Aplicación](/images/arquitectura_aplicacion.png)
+
+La arquitectura de nuestra aplicación está dividia en tres capas.
+- CAPA de DATOS: capa en la que consulta la base de datos y se accede a ella.
+- CAPA de NEGOCIO: capa que inclute toda la lógica que hace funcionar al programa.
+- CAPA de PRESENTACIÓN: capa en la que el usuario puede interactuar con la aplicación.
+### **Diagrama de componentes**
+
+![Diagrama Componentes](/images/diagrama_componentes.png)
+
+Este diagrama de componentes representa las siguientes interacciones:
+El componente **main** es el encargado de ejecutar el restode componentes y arrancar la aplicación. El componente main empieza llamando a los componentes: **write_cars_all**, **write_cars_lte** y **write_cars_year**. Estos tres para poder darle a **main** el valor que solicita han de llamar: **cars_all_md**, **cars_lte_md** y **cars_year_md**.
+A su vez, estos llaman a **BBDD_query_all**, **BBDD_query_lte** y **BBDD_query_year**. Todos estos dependen del componente **BBDD_connect**. Este componente lo que hace es conectarse a **MongoDB** y obtener la información de la colección que necesitan el resto de funciones.
+
+Una vez realizado todo este proceso el componente **main** ejecuta el componente **hugo_run**, encargado de inicializar la página web y mostrarla en el navegador.
+### **Esquema de la Base de Datos**
 El esquema nos fue provisto por un compañero de 2º de DAW. Tanto el Equipo de Desarrollo como el compañero de segundo decidimos hacer una web sobre alquiler de coches. El esquema es el siguiente:
 
 ![Esquema BBDD](/images/esquema_bbdd.png)
@@ -91,17 +127,23 @@ El esquema nos fue provisto por un compañero de 2º de DAW. Tanto el Equipo de 
 
 ## IMPLEMENTACIÓN
 
-![Arquitectura Aplicación](/images/arquitectura_aplicacion.png)
+### **Herramientas utilizadas**
+Las herramientas utilizadas han sido las siguientes:
+- Visual Studio Code: Explicación de qué es de Wikipedia.
+> Visual Studio Code es un editor de código fuente desarrollado por Microsoft para Windows, Linux, macOS y Web. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código. También es personalizable, por lo que los usuarios pueden cambiar el tema del editor, los atajos de teclado y las preferencias. Es gratuito y de código abierto,1​2​ aunque la descarga oficial está bajo software privativo e incluye características personalizadas por Microsoft.3
 
-![Diagrama Componentes](/images/diagrama_componentes.png)
+Hemos elegido programar en VSCode por los siguientes motivos:
+1. El primer motivo es porque es gratuito.
+2. Cómodo y fácil de utilizar
+3. Infintas extensiones desarrollados tanto por la comunidad como por empresas.
+4. Se puede utilizar para varios lenguajes de programación sin ningún tipo de dificultad.
 
-## BACKLOG
-Hemos dividido el proyecto en 5 tareas principales:
-1. Creación de la BBDD: El usuario quiere disponer de una BBDD, con una estructura especifica.
-2. Consultar la BBDD: El usuario quiere que los elementos de la BBDD sean accesibles.
-3. Programar en Python: El usuario quiere pasar la BBDD a un formato web.
-4. Utilizar HUGO para convertir un archivo markdown a html: El usuario quiere crear la web con un generador estático de contenidos.
-5. Darle estilo a la página web con CSS: El usuario quiere una página web de los elementos de la BBDD bonita.
+- MongoDBCompass: aplicación oficial de MongoDB Atlas que sirve para acceder a nuestra base de datos y hacer modificaciones tanto por GUI como por consola. 
+
+### **BackEnd**
+
+### **FronTend**
+![Web](/images/web_portada)
 
 ### Tarea 3
 Hemos dividido la tarea 3 en tres subtareas:
