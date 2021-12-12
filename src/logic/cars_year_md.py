@@ -27,7 +27,7 @@ def cars_classics_md(cars_classics):
         md_cars_classics += "\n" + "### Item " + str(i) + "\n"
         i += 1
         for key in document:
-            if key != "_id" and key != 'category' and key != 'year':
+            if key != 'category' and key != 'year':
                 md_cars_classics += "* " + key + ': ' + str(document[key]) + "\n"
             elif key == 'category':
                 md_cars_classics = category(key, document[key], md_cars_classics)
