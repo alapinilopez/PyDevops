@@ -130,7 +130,7 @@ El esquema nos fue provisto por un compañero de 2º de DAW. Tanto el Equipo de 
 ### **Herramientas utilizadas**
 Las herramientas utilizadas han sido las siguientes:
 - Visual Studio Code: Explicación de qué es de Wikipedia.
-> Visual Studio Code es un editor de código fuente desarrollado por Microsoft para Windows, Linux, macOS y Web. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código. También es personalizable, por lo que los usuarios pueden cambiar el tema del editor, los atajos de teclado y las preferencias. Es gratuito y de código abierto,1​2​ aunque la descarga oficial está bajo software privativo e incluye características personalizadas por Microsoft.3
+> Visual Studio Code es un editor de código fuente desarrollado por Microsoft para Windows, Linux, macOS y Web. Incluye soporte para la depuración, control integrado de Git, resaltado de sintaxis, finalización inteligente de código, fragmentos y refactorización de código. También es personalizable, por lo que los usuarios pueden cambiar el tema del editor, los atajos de teclado y las preferencias. Es gratuito y de código abierto, aunque la descarga oficial está bajo software privativo e incluye características personalizadas por Microsoft.
 
 Hemos elegido programar en VSCode por los siguientes motivos:
 1. El primer motivo es porque es gratuito.
@@ -165,9 +165,4 @@ El FrontEnd de la web es generado automáticamente por Hugo. Para poder utilizar
     - Ejecutamos el comando ``hugo server`` para inicializar la web.    
     ![Hugo directorios](/images/hugo_directorios.png)
 
-### Tarea 3
-Hemos dividido la tarea 3 en tres subtareas:
-+ Primero, hemos creado el entorno de trabajo con las carpetas y archivos necesarios para poder empezar a programar. Y después hemos creado el entorno virtual y hemos instalado las herremientas necesarias para comprobar que nuestro programa funciona.
-+ Luego, hemos creado una base de datos simulada, no real, porque hemos preferido darle prioridad a tener un programa que funcione con cualquier BBDD y luego ya crearemos la BBDD real.
-+ Finalmente, hemos creado una función que coge la BBDD simulada y la convierte y la añade en un archivo markdown. También hemos creado un caso test para comprobar que la base de datos no este vacia.
 
