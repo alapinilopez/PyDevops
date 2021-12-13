@@ -140,6 +140,8 @@ Hemos elegido programar en VSCode por los siguientes motivos:
 
 - MongoDBCompass: aplicación oficial de MongoDB Atlas que sirve para acceder a nuestra base de datos y hacer modificaciones tanto por GUI como por consola.
 
+- Clockify: Clockify es una aplicación simple de seguimiento del tiempo y planilla de horarios que les permite a ti y a tu equipo realizar el seguimiento de las horas trabajadas en los proyectos. Y es gratuito.
+
 - GitHub: GitHub es un proveedor para alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza principalmente para la creación de código fuente de programas de ordenador. Al realizar un proyecto en Git el equipo debe decidir que **GitFlow** seguir. **¿Qué es GitFlow?** En la web de Atlassian encontramos la siguiente definición:
 
 > Gitflow es una especie de idea abstracta de un flujo de trabajo de Git. Esto quiere decir que ordena qué tipo de ramas se deben configurar y cómo fusionarlas. Explicaremos brevemente los objetivos de las ramas a continuación
@@ -151,7 +153,6 @@ En este proyecto hemos utilizado la extensión *Conventional Commits* para tener
     - Rama feature: las ramas feature las hemos ido creando por cada característica que desarrollábamos para el proyecto. Ejemplo: feature_hugo. Rama característica en la que se trabaja en hugo.
 ![Git Graph](/images/git_graph.png)
 
-- Clockify: Clockify es una aplicación simple de seguimiento del tiempo y planilla de horarios que les permite a ti y a tu equipo realizar el seguimiento de las horas trabajadas en los proyectos. Y es gratuito.
 
 
 ### **BackEnd**
@@ -163,7 +164,7 @@ Hemos realizado diez casos test que comprueban la fiabilidad de nuestro código.
 
 No siempre hemos hecho clean testing y hemos acabado recurriendo al dirty testing. Ya que a la hora de programar no siempre se nos ocurrían los casos test ideales para las funciones que estábamos programando.
 
-![Tox](/images/tox.png) 
+![Tox](/images/tox2.png) 
 
 Estos son los requisitos que necesitamos tener instalados para que la aplicación funcione:
 ![Requirements](/images/requirements.png)

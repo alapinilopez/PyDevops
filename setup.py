@@ -5,6 +5,7 @@ setup(name='testing',
       description='Tox testing',
       author='Andreu Sorell y Alessandro Lapini',
       author_email='asorellpou@cifpfbmoll.eu',
+      url='https://github.com/alapinilopez/PyDevops'
      )
 """ 'atomicwrites==1.4.0',
         'attrs==21.2.0',
