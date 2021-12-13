@@ -9,13 +9,13 @@ cars_all = BBDD_query_all(collection)
 md_cars = cars_all_md(cars_all)
 
 # Rutas absolutas a checkear
-file_path_posts = r"C:\Users\asorp\Documents\proyecto\PyDevops\PyDevops\hugo\Sites\carrenting\content\posts\main.md"
-file_path_content = r"C:\Users\asorp\Documents\proyecto\PyDevops\PyDevops\hugo\Sites\carrenting\content\main.md"
+file_path_posts = r"hugo\Sites\carrenting\content\posts\main.md"
+file_path_content = r"hugo\Sites\carrenting\content\main.md"
 
 ## Creamos el archivo markdown y lo escribimos con los documentos de la BBDD formateados ##
 def write_cars_all_posts(md_cars):
     f = open("hugo\Sites\carrenting\content\posts\main.md", "w") # Ruta relativa
-    f.write("Hola mundo, aqui encontraras todos los coches que tenemos en nuestra BBDD" + "<!--more-->" + md_cars)
+    f.write("Aqui encontrara todos los coches listados en la BBDD" + "<!--more-->" + md_cars)
     f.close()
     if check_file_exists(file_path_posts): # Comprobamos que se han crado los archivos
         print('archivos md creados correctamente')

@@ -9,12 +9,12 @@ from src.logic.check_file_md_created import check_file_exists
 cars_cheaper = BBDD_query_lte(collection)
 md_cars_cheaper = cars_cheaper_md(cars_cheaper)
 
-file_path_posts = r"C:\Users\asorp\Documents\proyecto\PyDevops\PyDevops\hugo\Sites\carrenting\content\posts\precio.md"
-file_path_content = r"C:\Users\asorp\Documents\proyecto\PyDevops\PyDevops\hugo\Sites\carrenting\content\precio.md"
+file_path_posts = r"hugo\Sites\carrenting\content\posts\precio.md"
+file_path_content = r"hugo\Sites\carrenting\content\precio.md"
 
 def write_cars_lte_posts(md_cars_cheaper):
     f = open("hugo\Sites\carrenting\content\posts\precio.md", "w")
-    f.write("Hola tu, aqui encontraras los coches mas baratos" + "<!--more-->" + md_cars_cheaper)
+    f.write("Aqui encontrara los coches mas baratos" + "<!--more-->" + md_cars_cheaper)
     f.close()
     if check_file_exists(file_path_posts):
         print('archivos md creados correctamente')
