@@ -17,7 +17,7 @@ def cars_cheaper_md(cars_cheaper):
         md_cars_cheaper += "\n" + "### Item " + str(i) + "\n"
         i += 1
         for key in document:
-            if key != "_id" and key != 'category' and key != 'price':
+            if key != 'category' and key != 'price':
                 md_cars_cheaper += "* " + key + ': ' + str(document[key]) + "\n"
             elif key == 'category':
                 md_cars_cheaper = category(key, document[key], md_cars_cheaper)

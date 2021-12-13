@@ -7,14 +7,16 @@ def connection(uri):
     try:
         #Utilizamos una funcion de pymongo para conectarnos a la base de datos
         client = pymongo.MongoClient(uri)
-        #client.server_info()
+        client.server_info() # Fuerza la conexion, si no se conecta pasa al except
         db = client.PyDevops
         collection = db.cars
     except:
-        print("El servidor está caído o no estas conectado a la red")
+        print("El servidor está caído o la uri es incorrecta")
         exit()
-
-
-
+    else:
+        return True
+        
 connection(uri)
+
+
 

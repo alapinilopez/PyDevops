@@ -16,7 +16,7 @@ def cars_all_md(cars):
         md_cars += "\n" + "### Item " + str(i) + "\n"
         i += 1
         for key in document:
-            if key != "_id" and key != 'category':
+            if key != 'category':
                 md_cars += "* " + "**" + key + "**" + ': ' + str(document[key]) + "\n"
             elif key == 'category':
                 md_cars = category(key, document[key], md_cars)

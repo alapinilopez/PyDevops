@@ -21,8 +21,11 @@ def BBDD_read(collection):
         cars_find += "\n"
     if len(cars_find) == 0: #Si no ha encontrado ningun documento se lo indicamos en la variable cars_find  
         cars_find = "Su base de datos no tiene coches con los parametros indicados"
+        print(cars_find)
+    else:
+        print('El resultado lo podra ver en el archivo consulta.md')
     #Añadimos el resultado de la buscado a un archivo md para que el usuario lo pueda visualizar de manera mas bonita
-    f = open("consulta.md", "w")
+    f = open("src\BBDD_access\CRUD\consulta.md", "w")
     f.write(cars_find)
     f.close()
 
