@@ -99,14 +99,14 @@ La estructura de directorios utilizada es la siguiente:
 
 La arquitectura de nuestra aplicación está dividia en tres capas.
 - CAPA de DATOS: capa en la que consulta la base de datos y se accede a ella.
-- CAPA de NEGOCIO: capa que inclute toda la lógica que hace funcionar al programa.
+- CAPA de NEGOCIO: capa que incluye toda la lógica que hace funcionar al programa.
 - CAPA de PRESENTACIÓN: capa en la que el usuario puede interactuar con la aplicación.
 ### **Diagrama de componentes**
 
 ![Diagrama Componentes](/images/diagrama_componentes.png)
 
 Este diagrama de componentes representa las siguientes interacciones:
-El componente **main** es el encargado de ejecutar el restode componentes y arrancar la aplicación. El componente main empieza llamando a los componentes: **write_cars_all**, **write_cars_lte** y **write_cars_year**. Estos tres para poder darle a **main** el valor que solicita han de llamar: **cars_all_md**, **cars_lte_md** y **cars_year_md**.
+El componente **main** es el encargado de ejecutar el restode componentes y arrancar la aplicación. El componente main empieza llamando a los componentes: **write_cars_all**, **write_cars_lte** y **write_cars_year**. Estos tres para poder darle a **main** el valor que solicita han de llamar: **cars_all_md**, **cars_lte_md** y **cars_year_md**. 
 A su vez, estos llaman a **BBDD_query_all**, **BBDD_query_lte** y **BBDD_query_year**. Todos estos dependen del componente **BBDD_connect**. Este componente lo que hace es conectarse a **MongoDB** y obtener la información de la colección que necesitan el resto de funciones.
 
 Una vez realizado todo este proceso el componente **main** ejecuta el componente **hugo_run**, encargado de inicializar la página web y mostrarla en el navegador.
@@ -164,5 +164,3 @@ El FrontEnd de la web es generado automáticamente por Hugo. Para poder utilizar
                 - **year.md**: consulta de los items anteriores a x año.
     - Ejecutamos el comando ``hugo server`` para inicializar la web.    
     ![Hugo directorios](/images/hugo_directorios.png)
-
-
