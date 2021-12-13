@@ -20,7 +20,6 @@ else:
 value_passengers = int(values[3])
 value_year = int(values[4])
 value_price = int(values[5])
-value_available = bool(values[6])
 if values[6] == 'TRUE':
     value_available = True
 else:
