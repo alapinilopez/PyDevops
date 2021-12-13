@@ -1,13 +1,4 @@
-# funcion que pase a md BBDD_query_lte.py
-import sys
-sys.path.append(".")  # Para poder debuguear sin tener que quitar el src.logic.
-from src.BBDD_access.BBDD_connect import *
-from src.BBDD_access.BBDD_query_lte import BBDD_query_lte
-
-
-
-cars_cheaper = BBDD_query_lte(collection)
-
+# funcion que pase a md BBDD_query_lte.py #
 
 def cars_cheaper_md(cars_cheaper):
     # cada clave hacerla bold y su valor ponerlo al lado en texto plano. Listarlo

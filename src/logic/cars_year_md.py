@@ -1,10 +1,4 @@
-import sys
-sys.path.append(".")  # Para poder debuguear sin tener que quitar el src.logic.
-from src.BBDD_access.BBDD_connect import *
-from src.BBDD_access.BBDD_query_year import BBDD_query_year
-
-
-cars_classics = BBDD_query_year(collection)
+# funcion que pase a md BBDD_query_year.py #
 
 def cars_classics_md(cars_classics):
     # cada clave hacerla bold y su valor ponerlo al lado en texto plano. Listarlo
