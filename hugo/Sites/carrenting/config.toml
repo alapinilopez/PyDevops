@@ -1,0 +1,72 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'Alquileres Paco'
+theme = "ananke"
+[menu]
+[[menu.main]]
+  identifier = 'barato'
+  name = 'Coches Baratos'
+  title = 'blog section'
+  url = '/precio/'
+  weight = 15
+  [[menu.main]]
+  identifier = 'año'
+  name = 'Coches Clásicos'
+  title = 'blog section'
+  url = '/year/'
+  weight = 10
+  [[menu.main]]
+  identifier = 'todos'
+  name = 'Nuestros Coches'
+  title = 'blog section'
+  url = '/main/'
+  weight = -10
+  [[menu.main]]
+  identifier = 'CRUD'
+  name = 'Formularios CRUD'
+  title = 'blog section'
+  url = '/formularios/'
+  weight = 20
+  [markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.parser]
+      autoHeadingID = true
+      autoHeadingIDType = 'github'
+      [markup.goldmark.parser.attribute]
+        block = false
+        title = true
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = true
+      xhtml = false
+      
+  [markup.asciidocExt]
+    backend = 'html5'
+    extensions = []
+    failureLevel = 'fatal'
+    noHeaderOrFooter = true
+    preserveTOC = false
+    safeMode = 'unsafe'
+    sectionNumbers = false
+    trace = false
+    verbose = false
+    workingFolderCurrent = false
+    [markup.asciidocExt.attributes]
+
+[params]
+  author = ""
+  favicon = ""
+  site_logo = ""
+  description = "Su amigo y vecino Paco le alquila al mejor precio"
+  # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+  background_color_class = "orange"
+  featured_image = "images/header.jpeg"
+  

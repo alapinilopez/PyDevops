@@ -1,0 +1,8 @@
+{
+    "conventionalCommits.scopes": [
+        "BBDD",
+        "Conversion md",
+        "HUGO",
+        "casos tests"
+    ]
+}
