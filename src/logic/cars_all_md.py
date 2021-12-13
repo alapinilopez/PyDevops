@@ -30,4 +30,3 @@ def category(key, value, md_cars):
     for aspect in value:
         md_cars += '* * ' + aspect + ': ' + str(value[aspect]) + '\n'
     return md_cars
-cars_all_md(cars)
