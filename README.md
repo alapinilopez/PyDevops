@@ -163,7 +163,7 @@ Hemos realizado diez casos test que comprueban la fiabilidad de nuestro código.
 
 No siempre hemos hecho clean testing y hemos acabado recurriendo al dirty testing. Ya que a la hora de programar no siempre se nos ocurrían los casos test ideales para las funciones que estábamos programando.
 
-![Tox](/images/tox.png) 
+![Tox](/images/tox2.png) 
 
 Estos son los requisitos que necesitamos tener instalados para que la aplicación funcione:
 ![Requirements](/images/requirements.png)
