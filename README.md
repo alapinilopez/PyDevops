@@ -138,9 +138,35 @@ Hemos elegido programar en VSCode por los siguientes motivos:
 3. Infintas extensiones desarrollados tanto por la comunidad como por empresas.
 4. Se puede utilizar para varios lenguajes de programación sin ningún tipo de dificultad.
 
-- MongoDBCompass: aplicación oficial de MongoDB Atlas que sirve para acceder a nuestra base de datos y hacer modificaciones tanto por GUI como por consola. 
+- MongoDBCompass: aplicación oficial de MongoDB Atlas que sirve para acceder a nuestra base de datos y hacer modificaciones tanto por GUI como por consola.
+
+- GitHub: GitHub es un proveedor para alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza principalmente para la creación de código fuente de programas de ordenador. Al realizar un proyecto en Git el equipo debe decidir que **GitFlow** seguir. **¿Qué es GitFlow?** En la web de Atlassian encontramos la siguiente definición:
+
+> Gitflow es una especie de idea abstracta de un flujo de trabajo de Git. Esto quiere decir que ordena qué tipo de ramas se deben configurar y cómo fusionarlas. Explicaremos brevemente los objetivos de las ramas a continuación
+
+En este proyecto hemos utilizado la extensión *Conventional Commits* para tener un GitFlow adecuado y sencillo de comprender para el equipo. La disposición de las ramas es la siguiente:
+
+    - Rama main: rama predefinida al crearse el repositorio. Aquí añadimos lo que necesitábamos al principio.
+    - Rama develop: rama principal para el desarrollo del proyecto. Siempre que desarollamos una nueva **feature** (característica) la fusionamos a esta rama.
+    - Rama feature: las ramas feature las hemos ido creando por cada característica que desarrollábamos para el proyecto. Ejemplo: feature_hugo. Rama característica en la que se trabaja en hugo.
+![Git Graph](/images/git_graph.png)
+
+- Clockify: Clockify es una aplicación simple de seguimiento del tiempo y planilla de horarios que les permite a ti y a tu equipo realizar el seguimiento de las horas trabajadas en los proyectos. Y es gratuito.
+
 
 ### **BackEnd**
+#### **Testing**
+
+![Casos Test](/images/casos_test.png)
+
+Hemos realizado diez casos test que comprueban la fiabilidad de nuestro código. Al trabajar hemos aplicado la TDD: Test-Driven Development (desarrollo dirigido por tests) es una práctica de programación que consiste en escribir primero las pruebas (generalmente unitarias), después escribir el código fuente que pase la prueba satisfactoriamente y, por último, refactorizar el código escrito. 
+
+No siempre hemos hecho clean testing y hemos acabado recurriendo al dirty testing. Ya que a la hora de programar no siempre se nos ocurrían los casos test ideales para las funciones que estábamos programando.
+
+![Tox](/images/tox.png) 
+
+Estos son los requisitos que necesitamos tener instalados para que la aplicación funcione:
+![Requirements](/images/requirements.png)
 
 ### **FrontEnd**
 ![Web](/images/web_portada.png)
@@ -162,5 +188,80 @@ El FrontEnd de la web es generado automáticamente por Hugo. Para poder utilizar
                 - **main.md**: consulta de todos los items.
                 - **precio.md**: consulta de los items inferiores o igual a x precio.
                 - **year.md**: consulta de los items anteriores a x año.
+        - **formularios.md**: página que incluye los formularios que modifican la base de datos.
     - Ejecutamos el comando ``hugo server`` para inicializar la web.    
     ![Hugo directorios](/images/hugo_directorios.png)
+
+## Comparación Temporal
+
+![Tiempo](/images/tiempo.png)
+En este proyecto las estimaciones de tiempo las hemos realizado mediante tokens. Donde un token es equivalente a quince minutos de trabajo.
+
+Estimación inicial para cada épica y sus subtareas:
+
+1. El usuario quiere disponer de una BBDD con una estructura específica.
+- Estimación: 2 token
+- Usado: 1 token
+- Hemos tardado menos de lo esperado porque hemos usado la función "insertMany", que añade directamente todos los datos que el usuario desea en la estructura acordada anteriormente.
+
+2. El usuario quiere que los elementos de la BBDD sean accesibles.
+    - TAREA 2.1
+Tendremos que descargar la BBDD
+        - Estimación: 12 tokens
+Tiempo usado: 17 tokens
+Hemos tardado más de lo estimado porqué cuando queríamos acceder a la BBDD desde Python nos daba 'timeoutError'. Al final, después de investigar cual era el error (dirección IP errónea), nos pudimos conectar perfectamente y pudimos importar los documentos de la BBDD.
+    - TAREA 2.2
+Tendremos que pasar la BBDD a la función que la convierte en markdown.
+        - Estimación: 1 token
+        Tiempo usado: 3 tokens
+Hemos tardado más porqué hemos tenido que cambiar un poco la función que habíamos creado anteriormente (dict_md()), ya que lo que le pasábamos como input era una BBDD simulada. Y esta, no tenia exactamente el mismo formato que la BBDD original cuando la importamos.
+    - TAREA 2.3
+El usuario quiere acceder a documentos concretos de la BBDD.
+        - Estimación: 8 tokens
+    Tiempo usado: 9 tokens
+3. El usuario quiere pasar la BBDD a formato web.
+    - TAREA 3.1
+    Necesitamos crear el entorno de trabajo para poder programar las necesidades del usuario
+        - Estimación inicial: 1 token
+        - Estimación real: 3 token
+        - Hemos tardado un poco más de lo previsto porque hemos tenido que hacer la búsqueda de los archivos y carpetas necesarias para trabajar.
+    - TAREA 3.2
+    Necesitamos emularle al programa una BBDD para trabajar sin necesidad de la BBDD definitiva.
+        - Estimación inicial: 2 tokens.
+        - Estimación real: 1 token
+    - TAREA 3.3
+    Necesitamos pasar la BBDD a un archivo .md
+        - Estimación: 16 tokens
+        - Tiempo usado: 19 tokens.
+        - Nos hemos demorado ya que hemos tenido que informarnos sobre como iterar diccionarios anidados.
+    - TAREA 3.4
+    Poder abrir y escribir los ficheros md mediante programación
+        - Estimación: 8 tokens
+        - Tiempo usado: 6 tokens
+    - TAREA 3.5
+    Crear una única función que realice todas las otras funciones y nos enseñe la página web.
+        - Estimación: 4 tokens
+        - Tiempo usado: 12 tokens
+        - Se ha complicado más de lo esperado, porqué  cuando creábamos la función solo funcionaba para un único archivo markdown. Al final hemos modificado un poco las anteriores y simplemente llamando a las otras funciones desde un mismo archivo, donde, además, tenemos un función que lanza Hugo, ha funcionado.
+4. El usuario quiere crear la web con un generador estático de contenidos.
+    - TAREA 4.1
+    Tenemos que instalar Hugo.
+        - Estimación: 3 tokens
+        - Tiempo usado: 3 tokens
+        - Hemos seguido el tutorial y la única complicación que hemos tenido es que desde la consola de Windows nos daba error.
+    - TAREA 4.2
+    Tenemos que aprender a utilizar Hugo
+        - Estimación: 6 tokens
+        - Tiempo usado: 21 tokens
+        - Nos alejamos bastante de lo estimado porqué para aprender a utilizar Hugo de manera correcta, no solo nos hemos documentado, sino que también hemos estado practicando.
+    - TAREA 4.3
+    Generar una página web mediante Hugo, a partir de un archivo markdown
+        - Estimación: 4 tokens
+        - Tiempo usado: 4 tokens
+5. El usuario quiere una página web que contenga los elementos de la BBDD.
+    - Tarea 5.1
+    Modificar el template para darle un estilo único
+        - Estimación: 12 token
+        - Real: 14 token
+        - Nos hemos demorado ya que no entendíamos muy bien cómo modificar el CSS
+
