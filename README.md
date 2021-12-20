@@ -113,7 +113,19 @@ Una vez realizado todo este proceso el componente **main** ejecuta el componente
 ### **Esquema de la Base de Datos**
 El esquema nos fue provisto por un compañero de 2º de DAW. Tanto el Equipo de Desarrollo como el compañero de segundo decidimos hacer una web sobre alquiler de coches. El esquema es el siguiente:
 
-![Esquema BBDD](/images/esquema_bbdd.png)
+        {
+        "model": "string",
+        "brand": "enumType<renault | volkswagen | seat | ford | toyota | audi>",
+        "category": {
+            "name": "string",
+            "discountTax": "int"
+        },
+        "passengers": "int",
+        "year": "int",
+        "price": "int",
+        "available": "boolean"
+        }
+
 
 - model: el valor de model será el modelo del vehículo.
 - brand: marca del vehículo que tendrá que ser un Renault, Volkswagen, Seat, Ford, Toyota o Audi.
@@ -266,3 +278,10 @@ El usuario quiere acceder a documentos concretos de la BBDD.
         - Real: 14 token
         - Nos hemos demorado ya que no entendíamos muy bien cómo modificar el CSS
 
+## Problemas y Mejoras
+### Problemas
+Hugo no nos ha terminado pareciendo del todo intuitivo a la hora de modificar el HTML y CSS. Nos gustaría probar a hacer el proyecto con una web hecha por nosotros en HTML.
+### Mejoras
++ Añadir una GUI
++ Automatizar CRUD desde la web o desde la GUI. Cuando le des al submit del formulario, que haga CRUD sin que tengas que ejecutar manualmente el script de python.
++ Refactorizar los nombres de las variables.

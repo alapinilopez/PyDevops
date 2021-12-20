@@ -12,6 +12,7 @@ theme = "ananke"
   [[menu.main]]
   identifier = 'año'
   name = 'Coches Clásicos'
+  font_colot = 'red'
   title = 'blog section'
   url = '/year/'
   weight = 10
@@ -67,6 +68,6 @@ theme = "ananke"
   site_logo = ""
   description = "Su amigo y vecino Paco le alquila al mejor precio"
   # choose a background color from any on this page: http://tachyons.io/docs/themes/skins/ and preface it with "bg-"
-  background_color_class = "orange"
+  background_color_class = "bg-orange"
   featured_image = "images/header.jpeg"
   
