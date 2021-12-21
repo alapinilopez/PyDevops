@@ -414,6 +414,82 @@ El FrontEnd de la web es generado automáticamente por Hugo. Para poder utilizar
     - Ejecutamos el comando ``hugo server`` para inicializar la web.    
     ![Hugo directorios](/images/hugo_directorios.png)
 
+Hemos modificado el template original para adaptarlo a nuestras necesidades. Las modificaciones del CSS las hemos hecho desde el fichero **config.toml**.
+
+Con las siguientes "instrucciones" le hemos añadido un nav a la web.
+
+```
+[menu]
+[[menu.main]]
+  identifier = 'barato'
+  name = 'Coches Baratos'
+  title = 'blog section'
+  url = '/precio/'
+  weight = 15
+  [[menu.main]]
+  identifier = 'año'
+  name = 'Coches Clásicos'
+  font_colot = 'red'
+  title = 'blog section'
+  url = '/year/'
+  weight = 10
+  [[menu.main]]
+  identifier = 'todos'
+  name = 'Nuestros Coches'
+  title = 'blog section'
+  url = '/main/'
+  weight = -10
+  [[menu.main]]
+  identifier = 'CRUD'
+  name = 'Formularios CRUD'
+  title = 'blog section'
+  url = '/formularios/'
+  weight = 20
+```
+Con esta instrucción modificamos el color al nav para que sea adecuado al estilo de la página web.
+
+```
+[params]
+  background_color_class = "bg-orange"
+  featured_image = "images/header.jpeg"
+```
+Y también añadimos esto para que se visualizasen bien todo tipo de caracteres.
+
+```
+  [markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.parser]
+      autoHeadingID = true
+      autoHeadingIDType = 'github'
+      [markup.goldmark.parser.attribute]
+        block = false
+        title = true
+    [markup.goldmark.renderer]
+      hardWraps = false
+      unsafe = true
+      xhtml = false
+      
+  [markup.asciidocExt]
+    backend = 'html5'
+    extensions = []
+    failureLevel = 'fatal'
+    noHeaderOrFooter = true
+    preserveTOC = false
+    safeMode = 'unsafe'
+    sectionNumbers = false
+    trace = false
+    verbose = false
+    workingFolderCurrent = false
+    [markup.asciidocExt.attributes]
+```
 ## Comparación Temporal
 
 ![Tiempo](/images/tiempo.png)
