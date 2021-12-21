@@ -56,7 +56,7 @@ Hemos analizado el proyecto mediante historias de usuario. Tras un período de a
 1. Creación de la BBDD: El usuario quiere disponer de una BBDD, con una estructura especifica.
 2. Consultar la BBDD: El usuario quiere que los elementos de la BBDD sean accesibles.
 3. Programar en Python: El usuario quiere pasar la BBDD a un formato web.
-4. Utilizar HUGO para convertir un archivo markdown a html: El usuario quiere crear la web con un generador estático de contenidos.
+4. Utilizar HUGO para convertir un archivo MarkDown a html: El usuario quiere crear la web con un generador estático de contenidos.
 5. Darle estilo a la página web con CSS: El usuario quiere una página web de los elementos de la BBDD bonita.
 
 Para este proyecto las tecnologías a utilizar ya nos fueron "asignadas", por así decirlo. Como ya he comentado anteriormente para la base de datos utilizamos **MongoDB Atlas**. El lenguaje de programación es **Python**. Y el generador estático de contenido es **Hugo**.
@@ -168,7 +168,7 @@ En este proyecto hemos utilizado la extensión *Conventional Commits* para tener
 
 
 
-### **BackEnd**
+## **BackEnd**
 Para el ejemplo de código de cómo funciona la aplicación usaremos un solo caso de uso. Simularemos que la función **main** de la aplicación solo corre ciertos módulos.
 
 ### ***Fichero main***
@@ -237,7 +237,7 @@ md_cars = cars_all_md(cars_all)
 file_path_posts = r"hugo\Sites\carrenting\content\posts\main.md"
 file_path_content = r"hugo\Sites\carrenting\content\main.md"
 
-## Creamos el archivo markdown y lo escribimos con los documentos de la BBDD formateados ##
+## Creamos el archivo MarkDown y lo escribimos con los documentos de la BBDD formateados ##
 def write_cars_all_posts(md_cars):
     f = open("hugo\Sites\carrenting\content\posts\main.md", "w") # Ruta relativa
     f.write("Aqui encontrara todos los coches listados en la BBDD" + "<!--more-->" + md_cars)
@@ -245,7 +245,7 @@ def write_cars_all_posts(md_cars):
     if check_file_exists(file_path_posts): # Comprobamos que se han crado los archivos
         print('archivos md creados correctamente')
     else:
-        print('No se han podido crear los archivos markdown')
+        print('No se han podido crear los archivos MarkDown')
 
 # Creamos dos archivos md con los mismo items de la BBDD, por el 'theme' que usamos en hugo 
 def write_cars_all_content(md_cars):
@@ -255,7 +255,7 @@ def write_cars_all_content(md_cars):
     if check_file_exists(file_path_content):
         print('archivos md creados correctamente')
     else:
-        print('No se han podido crear los archivos markdown')
+        print('No se han podido crear los archivos MarkDown')
 ```
 ### ***Fichero que pasa los items a MD***
 Es el encargado de generar una lista en markDown a partir de la colección que hemos solicitado mediante código.
@@ -330,6 +330,60 @@ connection(uri)
 Hemos realizado diez casos test que comprueban la fiabilidad de nuestro código. Al trabajar hemos aplicado la TDD: Test-Driven Development (desarrollo dirigido por tests) es una práctica de programación que consiste en escribir primero las pruebas (generalmente unitarias), después escribir el código fuente que pase la prueba satisfactoriamente y, por último, refactorizar el código escrito. 
 
 No siempre hemos hecho clean testing y hemos acabado recurriendo al dirty testing. Ya que a la hora de programar no siempre se nos ocurrían los casos test ideales para las funciones que estábamos programando.
+### ***Test all cars***
+Este caso test sirve para comprobar si los items de la BBDD se han pasado a MarkDown correctamente.
+```python
+from src.logic.cars_all_md import cars_all_md
+from tests import *
+import pytest
+
+
+@pytest.mark.cars_all_md
+def test_correcto():
+    assert cars_all_md(doc_correct) == '\n### Item 1\n* **model**: clio\n* **brand**: renault\n* **category:**\n* * name: common\n* * discountTax: 60\n* **passengers**: 5\n* **year**: 2018\n* **price**: 20\n* **available**: True\n'
+
+@pytest.mark.cars_all_md
+def test_incorrecto1():
+    assert not cars_all_md(doc_incorrect1) == '* **model**: clio\n* **brand**: renault\n* **passengers**: 5\n* **year**: 2018\n* **price**: 20\n* **available**: True\n\n'
+```
+### ***Comprueba instalación de Hugo***
+Test que comprueba si Hugo está instalado en el ordenador.
+```python
+from src.logic.hugo_run import *
+import pytest
+
+
+@pytest.mark.hugo_installed
+def test_correct_installation():
+    assert check_hugo_installed() == True
+```
+### ***Test conexión a la BBDD***
+El test de la conexión a la BBDD al asignarle una uri inválida.
+```python
+from src.BBDD_access.BBDD_connect import *
+import pytest
+
+uri = 'mongodb+srv://admin:admin@cluster0.thpbm.mongodb.net/PyDevops?retryWrites=true&w=majority'
+uri_incorrect = 'mongodb+srv://admin:incorrectpassword@cluster0.thpbm.mongodb.net/PyDevops?retryWrites=true&w=majority'
+
+@pytest.mark.BBDD_connect
+def test_correct_uri():
+    assert connection(uri) == True
+
+# Esta función es solo para checkear que, si la uri es incorrecta, no se conecta a la BBDD.
+# Es solo para el caso test, no se enviará a producción, ya que si no se conecta queremos que pare el programa (exit)
+# Y con el return solo para esa función
+def invalid_uri(uri): 
+    try:
+        client = pymongo.MongoClient(uri)
+        client.server_info()
+    except:
+        return False
+
+@pytest.mark.BBDD_connect
+def test_incorrect_uri():
+    assert invalid_uri(uri_incorrect) == False
+```
 
 ![Tox](/images/tox2.png) 
 
@@ -379,7 +433,7 @@ Tendremos que descargar la BBDD
 Tiempo usado: 17 tokens
 Hemos tardado más de lo estimado porqué cuando queríamos acceder a la BBDD desde Python nos daba 'timeoutError'. Al final, después de investigar cual era el error (dirección IP errónea), nos pudimos conectar perfectamente y pudimos importar los documentos de la BBDD.
     - TAREA 2.2
-Tendremos que pasar la BBDD a la función que la convierte en markdown.
+Tendremos que pasar la BBDD a la función que la convierte en MarkDown.
         - Estimación: 1 token
         Tiempo usado: 3 tokens
 Hemos tardado más porqué hemos tenido que cambiar un poco la función que habíamos creado anteriormente (dict_md()), ya que lo que le pasábamos como input era una BBDD simulada. Y esta, no tenia exactamente el mismo formato que la BBDD original cuando la importamos.
@@ -410,7 +464,7 @@ El usuario quiere acceder a documentos concretos de la BBDD.
     Crear una única función que realice todas las otras funciones y nos enseñe la página web.
         - Estimación: 4 tokens
         - Tiempo usado: 12 tokens
-        - Se ha complicado más de lo esperado, porqué  cuando creábamos la función solo funcionaba para un único archivo markdown. Al final hemos modificado un poco las anteriores y simplemente llamando a las otras funciones desde un mismo archivo, donde, además, tenemos un función que lanza Hugo, ha funcionado.
+        - Se ha complicado más de lo esperado, porqué  cuando creábamos la función solo funcionaba para un único archivo MarkDown. Al final hemos modificado un poco las anteriores y simplemente llamando a las otras funciones desde un mismo archivo, donde, además, tenemos un función que lanza Hugo, ha funcionado.
 4. El usuario quiere crear la web con un generador estático de contenidos.
     - TAREA 4.1
     Tenemos que instalar Hugo.
@@ -423,7 +477,7 @@ El usuario quiere acceder a documentos concretos de la BBDD.
         - Tiempo usado: 21 tokens
         - Nos alejamos bastante de lo estimado porqué para aprender a utilizar Hugo de manera correcta, no solo nos hemos documentado, sino que también hemos estado practicando.
     - TAREA 4.3
-    Generar una página web mediante Hugo, a partir de un archivo markdown
+    Generar una página web mediante Hugo, a partir de un archivo MarkDown
         - Estimación: 4 tokens
         - Tiempo usado: 4 tokens
 5. El usuario quiere una página web que contenga los elementos de la BBDD.
@@ -440,3 +494,4 @@ Hugo no nos ha terminado pareciendo del todo intuitivo a la hora de modificar el
 + Añadir una GUI
 + Automatizar CRUD desde la web o desde la GUI. Cuando le des al submit del formulario, que haga CRUD sin que tengas que ejecutar manualmente el script de python.
 + Refactorizar los nombres de las variables.
++ Automatizar la actualización de la web por cada modificación en la BBDD.
