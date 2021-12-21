@@ -112,19 +112,20 @@ A su vez, estos llaman a **BBDD_query_all**, **BBDD_query_lte** y **BBDD_query_y
 Una vez realizado todo este proceso el componente **main** ejecuta el componente **hugo_run**, encargado de inicializar la página web y mostrarla en el navegador.
 ### **Esquema de la Base de Datos**
 El esquema nos fue provisto por un compañero de 2º de DAW. Tanto el Equipo de Desarrollo como el compañero de segundo decidimos hacer una web sobre alquiler de coches. El esquema es el siguiente:
-
-        {
-        "model": "string",
-        "brand": "enumType<renault | volkswagen | seat | ford | toyota | audi>",
-        "category": {
-            "name": "string",
-            "discountTax": "int"
-        },
-        "passengers": "int",
-        "year": "int",
-        "price": "int",
-        "available": "boolean"
-        }
+```json 
+{
+"model": "string",
+"brand": "enumType<renault |    volkswagen | seat | ford | toyota | audi>",
+"category": {
+    "name": "string",
+    "discountTax": "int"
+},
+"passengers": "int",
+"year": "int",
+"price": "int",
+"available": "boolean"
+}
+```
 
 
 - model: el valor de model será el modelo del vehículo.
@@ -168,7 +169,161 @@ En este proyecto hemos utilizado la extensión *Conventional Commits* para tener
 
 
 ### **BackEnd**
-#### **Testing**
+Para el ejemplo de código de cómo funciona la aplicación usaremos un solo caso de uso. Simularemos que la función **main** de la aplicación solo corre ciertos módulos.
+
+### ***Fichero main***
+Es el encargado de llamar al resto de ficheros para hacer funcionar la aplicación. Termina ejecutando **Hugo** y abriendo la web en el navegador predefinido del sistema. 
+```python
+from write_cars_all import *
+from write_cars_lte import *
+from write_cars_year import *
+from hugo_run import *
+
+
+write_cars_all_posts(md_cars)
+write_cars_all_content(md_cars)
+
+write_cars_lte_posts(md_cars_cheaper)
+write_cars_lte_content(md_cars_cheaper)
+
+write_cars_year_posts(md_cars_classics)
+write_cars_year_content(md_cars_classics)
+
+hugo_run()
+```
+### ***Ejecución de Hugo***
+Sirve para lanzar Hugo en el navegador predefinido de manera automática. Se ejecuta una vez se han generado los ficheros markDown con las consultas a la base de datos.
+```python
+from os import system, chdir
+import webbrowser
+
+
+
+def hugo_run():
+    check_hugo_installed() # Comprobamos que hugo esta instalado
+    try:
+        chdir("hugo/Sites/carrenting") # Le indicamos la ruta relativa donde se tiene que realizar el comando
+    except:
+        print('Situate en el directorio correcto') # si no esta en esa ruta, se lo indicamos
+        exit()
+    webbrowser.open_new_tab('http://localhost:1313/') # Abrimos la web en el navegador
+    system("hugo server") # Comando para lanzar hugo
+
+def check_hugo_installed():
+    try:
+        system("hugo version") # Comando que nos indica la verion de hugo y en caso de no estar instalado correctamente daría error
+    except:
+        print('Hugo no esta instalado correctamente')
+        exit()
+    else:
+        return True
+
+```
+
+### ***Módulo que escribe los items en un fichero***
+Es el encargado de crear el directorio **posts** dentro de de la estructura de directorios de Hugo. Dentro de **posts** generamos el archivo markDown que incluye los items solicitados.
+```python
+import sys
+sys.path.append(".")
+from src.BBDD_access.BBDD_connect import *
+from src.BBDD_access.BBDD_query_all import BBDD_query_all
+from src.logic.cars_all_md import cars_all_md
+from src.logic.check_file_md_created import check_file_exists
+
+cars_all = BBDD_query_all(collection)
+md_cars = cars_all_md(cars_all)
+
+# Rutas absolutas a checkear
+file_path_posts = r"hugo\Sites\carrenting\content\posts\main.md"
+file_path_content = r"hugo\Sites\carrenting\content\main.md"
+
+## Creamos el archivo markdown y lo escribimos con los documentos de la BBDD formateados ##
+def write_cars_all_posts(md_cars):
+    f = open("hugo\Sites\carrenting\content\posts\main.md", "w") # Ruta relativa
+    f.write("Aqui encontrara todos los coches listados en la BBDD" + "<!--more-->" + md_cars)
+    f.close()
+    if check_file_exists(file_path_posts): # Comprobamos que se han crado los archivos
+        print('archivos md creados correctamente')
+    else:
+        print('No se han podido crear los archivos markdown')
+
+# Creamos dos archivos md con los mismo items de la BBDD, por el 'theme' que usamos en hugo 
+def write_cars_all_content(md_cars):
+    f = open("hugo\Sites\carrenting\content\main.md", "w")
+    f.write(md_cars)
+    f.close()
+    if check_file_exists(file_path_content):
+        print('archivos md creados correctamente')
+    else:
+        print('No se han podido crear los archivos markdown')
+```
+### ***Fichero que pasa los items a MD***
+Es el encargado de generar una lista en markDown a partir de la colección que hemos solicitado mediante código.
+```python
+# funcion que pase a md el resultado de BBDD_query_all.py #
+
+def cars_all_md(cars):
+    # cada clave hacerla bold y su valor ponerlo al lado en texto plano. Listarlo
+    md_cars = ""
+    i = 1
+    for document in cars:
+        md_cars += "\n" + "### Item " + str(i) + "\n"
+        i += 1
+        for key in document:
+            if key != 'category':
+                md_cars += "* " + "**" + key + "**" + ': ' + str(document[key]) + "\n"
+            elif key == 'category':
+                md_cars = category(key, document[key], md_cars)
+            else:
+                continue
+    return md_cars
+
+def category(key, value, md_cars):
+    md_cars += '* **' + key + ':' + '**' + '\n'
+    for aspect in value:
+        md_cars += '* * ' + aspect + ': ' + str(value[aspect]) + '\n'
+    return md_cars
+```
+### ***Buscamos los documentos en la colección***
+Este es el encargado de recoger los datos que nos interesan de la base de datos.
+```python
+import sys
+sys.path.append(".")
+from src.BBDD_access.BBDD_connect import *
+
+def BBDD_query_all(collection):
+    cars_all = []
+    #buscamos todos los documentos de la coleccion y lo añadimos a un array
+    for document in collection.find({}):
+        cars_all.append(document)
+    if len(cars_all) == 0:
+        print('Su base de datos esta vacia')
+    return cars_all
+```
+### ***Conexión a MongoDB***
+Es el encargado de establecer la conexión a nuestra base de datos en **MongoDB**
+```python
+import pymongo
+ 
+uri = 'mongodb+srv://****:****@cluster0.thpbm.mongodb.net/PyDevops?retryWrites=true&w=majority'
+def connection(uri):
+    global collection, db
+    try:
+        #Utilizamos una funcion de pymongo para conectarnos a la base de datos
+        client = pymongo.MongoClient(uri)
+        client.server_info() # Fuerza la conexion, si no se conecta pasa al except
+        db = client.PyDevops
+        collection = db.cars
+    except:
+        print("El servidor está caído o la uri es incorrecta")
+        exit()
+    else:
+        return True
+        
+connection(uri)
+```
+
+## **Testing**
 
 ![Casos Test](/images/casos_test.png)
 
