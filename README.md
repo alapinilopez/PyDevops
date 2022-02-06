@@ -1,6 +1,6 @@
 # PyDevops
 
-Proyecto de primero de DAW DUAL desarrollado por _Alessandro Lapini y Andreu Sorell
+Proyecto de primero de DAW DUAL desarrollado por Alessandro Lapini y Andreu Sorell
 
 ## INTRODUCCIÓN
 
